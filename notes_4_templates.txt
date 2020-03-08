@@ -31,3 +31,10 @@ Nesting Templates
 You can nest templates inside of one another,(for instance, create a temlate and plop that into the html template
 for a more modularized experience)
 {{/* here is a comment exaple */}}
+You can define stuff like SVGS or other elements and then use them within the file of the html
+You can also make entire parts of the html, (like a header or footer) into a template and put it in the gohtml file. 
+
+Methods in Templates
+Call functions in templates for FORMATTING ONLY! (Not big data stuff). 
+Reasons why: Seperation of concerns, also, you'd be calling a server twice for a function. Not cool, bro. 
+Not that advanced, just look at his super cool examples. 
