@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>functions</title>
+</head>
+<body>
+<!-- So at first, we just have 3 passed in
+
+Then, we pipe 3 to that double funciton
+
+Then, we pipe the value of three, double it, then square it
+
+Then, we pass in 3, double it, square it, then square root it
+-->
+{{.}}
+
+{{. | fdbl}}
+
+{{. | fdbl | fsq}}
+
+{{. | fdbl | fsq | fsqrt}}
+
+</body>
+</html>

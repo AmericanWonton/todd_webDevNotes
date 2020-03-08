@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+</head>
+<body>
+<!-- Might have to remove some of this code in conjuction with Main.go in order for it to work. -->
+<!--
+Example 1
+<h1>The meaning of life: {{.}}</h1> 
+{{$wisdom := .}}
+<h2> The meaning of life pt 2: {{$wisdom}}</h2>Here we assigned a variable to our passed in value. You can access it
+anywhere on the template. Vairalbes must be denoted with a "$" sign!
+-->
+
+<!-- 
+Example 2
+<ul>
+    {{range .}} Here we are ranging over the data passed in, which is a slcie of string.
+    <li>{{.}}</li>
+    {{end}} This is needed to end the loop!
+</ul>
+-->
+
+<!--
+Example 3 
+<ul>
+    {{range $index, $element := .}} Here we can assign element and index
+    <li>{{$index}} - {{$element}}</li>
+    {{end}}
+</ul>
+-->
+
+<!--
+Example 4
+    {{range $key, $val := .}} Here's the key and value for the map
+    <li>{{$key}} - {{$val}}</li>
+    {{end}}
+
+-->
+
+<!--
+Example 5
+<ul>
+    {{$x := .Name}}
+    {{$y := .Motto}}
+    <li>{{.Name}} - {{.Motto}}</li>
+</ul>
+-->
+
+<!--
+Example 6:
+<ul>
+    {{range .}}
+    {{$name := .Name}}
+    {{$motto:= .Motto}} These also use the variables in the struct
+    <li>{{$name}} - {{$motto}}</li>
+    {{end}}
+</ul>
+-->
+
+<!--
+Example 7:
+    <ul>
+        {{range .Wisdom}}
+        <li>{{.Name}} - {{.Motto}}</li>
+        {{end}}
+    </ul>
+
+    <ul>
+        {{range .Transport}}
+        <li>{{.Manufacturer}} - {{.Model}} -  {{.Doors}}</li>
+        {{end}}
+    </ul>
+-->
+
+</body>
+</html>
+

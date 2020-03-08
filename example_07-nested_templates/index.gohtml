@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+</head>
+<body>
+
+<h1>The meaning of life: {{.}}</h1>
+
+<p>{{template "polarbear"}}</p>
+
+{{/* here is a comment exaple */}}
+
+{{/* Let's pass some data into a template */}}
+<h1>Polar Bear Quandries</h1>
+<p>{{template "polarbear2" .}}</p>
+
+</body>
+</html>

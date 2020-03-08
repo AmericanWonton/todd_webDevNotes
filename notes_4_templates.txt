@@ -1,0 +1,33 @@
+for exapmle _01, this is a poopy way of doing it. You kind of want to extract those html docs from 
+templates,(in seperate functions, where you can parse the files)
+
+In 02-parse files, you can name the file anything you want... tpl.gohtml is just the standard. You can name it
+any extenssion. 
+So like Todd said, a Pointer to a Template is a CONTAINER into which ALL OF YOUR TEMPLATES are Parsed 
+and get HELD.
+
+For the most part in this course, we are going to use ParseGlob, not parse template 
+You should do the last section Todd did for ParseGlob and put that all in one container template 
+It will save space and you can just neatly execute them in main. 
+
+For Passing Data into Templates: 
+The dot in html files is the current data inputted into this document...so whatever you pass in. 
+
+For passing functions into Templates 
+You gotta be careful and pass it like Todd says 
+Look at the example file and play around with some functions
+Functions NEED TO BE DEFINED before they are parsed into the HTML files! Otherwise, your HTML file 
+referrences a function that isn't there yet!
+
+Pipelines
+You can pass the result of one function you brought into your HTML, into another pipelined function 
+(it's kind of like powershell piping)
+
+Pre-defined global functions
+You don't need to pass these in like the other functions. They are globally available in the HTML 
+I would just check Todd's examples...it's pretty straight forward and we don't need to retype it. 
+
+Nesting Templates
+You can nest templates inside of one another,(for instance, create a temlate and plop that into the html template
+for a more modularized experience)
+{{/* here is a comment exaple */}}
