@@ -1,0 +1,45 @@
+20. Understanding Servers
+
+There's a bunch of ways to say server: multiplexer, mux, http multiplexer, server, router, etc.
+
+The web works on a client/server structure. Based upon the URL, the server runs special logic, then returns stuff
+for the request. Based upon certain conditions, it routes to what needs to be done,(including the http method).
+
+Based upon the OSCI Model, (Google it) there's an architecture for how stuff gets done on the web. 
+We have to understand stuff for TCP and HTTP. TCP is Text Control Protocol. It is used to send stuff. 
+HTTP is Hyper Text Transform Protocol and it is TCP with a ruled structure, (on top of TCP).
+
+Structure of an HTTP Request: 
+1. Request Line (example: Method SP request-URI SP HTTP-Version CRLF) or (GET /path/to/file/index.html HTTP/1.0)
+2. Headers
+3. Optional Message Body
+
+Structure of an HTTP Response:
+1. Status Line (HTTP-Version SP Status-Code SP reason-Phrase CRLF) or (HTTP/1.0 200 OK)
+2. Headers
+3. Optional Message Body
+
+IETF regulates teh rules for this
+
+Make sure the spacing is correct on the HTTP Request AND Response! It has a format to follow!
+You can see examples of this. Open chrome, open developer tools, go to "Network", type in a site name and open the Headers
+Or you can do curl -v google.com 
+
+21. TCP server - write to connection
+
+The request is just text...it needs to adheere to the HTTP protocol for our server to process the text.
+Go doc has a 'net' package or 'net/http'
+Telnet needs to be installed...or you should be able to enable it through control panel.
+
+To run this, go run main.go into the code, and open telnet. Type the following:
+telnet localhost 8080
+
+
+
+
+
+
+
+
+
+
