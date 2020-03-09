@@ -38,3 +38,7 @@ Methods in Templates
 Call functions in templates for FORMATTING ONLY! (Not big data stuff). 
 Reasons why: Seperation of concerns, also, you'd be calling a server twice for a function. Not cool, bro. 
 Not that advanced, just look at his super cool examples. 
+
+We're going to use html/template as opposed to text/template. Apparently html/template has
+good protections for cross site scripting,( watch Todd's video num 19 to find out more.)
+
