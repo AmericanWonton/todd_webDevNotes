@@ -34,6 +34,10 @@ Telnet needs to be installed...or you should be able to enable it through contro
 To run this, go run main.go into the code, and open telnet. Type the following:
 telnet localhost 8080
 
+22. TCP Server read from connection using bufio.Scanner 
+
+23. I learned that this stuff works a little different on Mac...
+
 
 
 
