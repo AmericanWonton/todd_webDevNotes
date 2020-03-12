@@ -38,8 +38,11 @@ telnet localhost 8080
 
 23. I learned that this stuff works a little different on Mac...
 
+24. TBH, according to Todd, we really won't use TCP too much
 
-
+25. This is a dumb Rot13 example along with and in-memory database, which just a database 
+stored in memory through commands.
+I think I'll need the Telnet client open to run these examples. 
 
 
 
