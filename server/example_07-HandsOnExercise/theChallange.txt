@@ -1,0 +1,6 @@
+So the challange is we need to make a server that responds to different Methods,(Like Get, Post, what have you) and
+different URIs. So, we know how to read the connection requests in text...and we know how to get the methods in text, 
+based on line 1, (same for the URI). 
+
+Lets make a 'Get' Method example, (with a URI of dankURI) and 'Post' Method, (with a URI of alsoDankURI) to handle different
+requests from different places!

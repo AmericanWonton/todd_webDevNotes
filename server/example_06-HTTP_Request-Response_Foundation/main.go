@@ -51,6 +51,9 @@ func request(conn net.Conn) {
 			m := strings.Fields(ln)[0]
 			fmt.Println("***METHOD", m) //So at line 0, it should print ***METHOD GET. Based on what M is, we
 			//can make some dope conditional logic based on what request it is.
+			/* This is for the exercise Todd asked us to do, getting the URL */
+			theURL := "localhost:8080" + strings.Fields(ln)[1]
+			fmt.Println("***URL:", theURL)
 		}
 		if ln == "" {
 			/* there's the request line, then the headers...and then a blank line, meaning we are done. */
@@ -62,7 +65,8 @@ func request(conn net.Conn) {
 
 func respond(conn net.Conn) {
 	/* This is a base-ass method for html, no parsing files. */
-	body := `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title></title></head><body><strong>Hello World</strong></body></html>`
+	body := `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title></title></head><body><strong>Hello 
+	World</strong><br><br><strong>Easy peasy, lemon Febreezy</strong></body></html>`
 	/* Here we print, TO THE CONNECTION, our http response */
 	/* This is formatted to HTTP Protocol. Status Line:
 	Version: HTTP/1.1
@@ -78,4 +82,5 @@ func respond(conn net.Conn) {
 	fmt.Fprint(conn, "\r\n")
 	/* The body */
 	fmt.Fprint(conn, body)
+
 }
