@@ -27,7 +27,7 @@ Or you can do curl -v google.com
 
 21. TCP server - write to connection
 
-The request is just text...it needs to adheere to the HTTP protocol for our server to process the text.
+The request is just text...it needs to adhere to the HTTP protocol for our server to process the text.
 Go doc has a 'net' package or 'net/http'
 Telnet needs to be installed...or you should be able to enable it through control panel.
 
@@ -44,6 +44,27 @@ telnet localhost 8080
 stored in memory through commands.
 I think I'll need the Telnet client open to run these examples. 
 
+26. When we run this in the terminal, we get the following: 
+ go run main.go
+GET // HTTP/1.1 (***** This is the Request line *****)
+***METHOD GET  (**** This is the method we inserted *****)
+Host: localhost:8080 (***** Everything below this is the 'header' section ****)
+Connection: keep-alive
+Cache-Control: max-age=0
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36
+Sec-Fetch-Dest: document
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,es-US;q=0.8,es;q=0.7
+Cookie: Webstorm-10603712=c6901360-28c2-4d81-880b-a7596174bde
+
+
+We can add anything in the localhost url when we run this (Example: http://localhost:8080//bigfuckingtittie)
 
 
 
