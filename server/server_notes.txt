@@ -66,8 +66,4 @@ Cookie: Webstorm-10603712=c6901360-28c2-4d81-880b-a7596174bde
 
 We can add anything in the localhost url when we run this (Example: http://localhost:8080//bigfuckingtittie)
 
-
-
-
-
-
+27. Look at the code for the challanges

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Type Submit</title>
+</head>
+<body>
+
+
+{{/* Check to see if we have any values passed in for our Request value in that uberStruct passed in */}}
+{{if eq .SenorRequest ""}}
+    <p>You ain't entered shit</p>
+{{else}}
+    <p>Congrats, the name is {{.SenorRequest}}</p>
+{{end}}
+
+
+{{/* Here is our form which will show up regardless */}}
+<form action="/" method="POST">
+    <input type="text" name="YourName" placeholder="first name">
+    <input type="submit" name="submit-btn" value="onda button">
+</form>
+
+</body>
+</html>

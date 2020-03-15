@@ -1,0 +1,45 @@
+29. We're working in the net http package.
+An interface is a TYPE. Any other type that has this method is ALSO a handler
+BRING IT BACK Clients make requests, servers respond 
+Type handler looks like this: 
+type Handler interface {
+    ServerHTTP(ResponseWriter, *Request)
+}
+
+For servers, we have http.ListenAndServe:
+func ListenAndServe(addr string, handler Handler) error // This returns an error
+
+There's also one for TLS,(the new SSL, cuz that shit is outdated)
+httpListenAndServeTLS:
+func ListenAndServeTLS(addr, certFile, keyFile string, handler Handler) error //This returns an error
+/* TLS stands for Transport Layered Security */
+
+We passed a pointer to a Request above. A request is a BIG ASS type of struct
+Might have to watch this video to see what it looks like again.
+
+30. Understanding & Using ListenAndServe
+THIS IS IMPORTANT:
+type Handler interface {
+    ServeHTTP(ResponseWriter, *Request)
+}
+
+Just a heads up running this code, chrome launches multiple requests...we don't know why, it's weird for example's sake.
+Todd uses Firefox
+
+31. Foundation of net/http: Handler, ListenAndServe, Request, ResponseWriter 
+Again, Clients make Requests to Servers and Servers write Responses (Step1)
+Next we listen and serve (step2)
+
+32. Request 
+So, lets do some stuff involving the pointer to a request in the Handler!
+So the request is again, formatted as follows:
+1. Startline(RequestLine, or ReponseLine for Response) 2. headers (blank line) 3. Body(Otherwise known as payload)
+Forms can be in the body OR the URL
+If you want form data to be in the BODY, send it through POST. If you want it sent in the URL, you can put it through GET
+So for example, if you have a form, the method is "GET", not "POST" to put that data in the URL
+/* Note, we may have to practice this one...it involves a LOT of practice to get... */
+
+33. Retrieving other Request values
+So I just used the bottom one, 05_Host_Content length, because it has everything from 02 downward
+
+34. Exploring http.responseWriter 
