@@ -1,0 +1,18 @@
+36. Understanding ServeMux
+If people make different Requests from different URLs, how do we write code to respond to those requests?
+
+/* Just a heads up, the folder is organized from least practical to practical in these examples */
+
+37. Disambiguation 
+We are doing this again because it's difficult to learn :(
+type handler (responseWriter, Request)
+Listen and serve takes a handler, above
+Routing is done with a serveMux. A serveMux returns a pointer to a Mux
+any value of type serveMux intergrates the handler interface
+HadnleFunc has a bunch of fields, one of which is pointer to a Request,(which is a function, it's own type)
+defaultServeMux, pass in nil for the handler,(that makes it use the default mux). 
+Pass in the route and the function 
+
+38. Third party serve-mux julien schmidt's router
+Now we are going to try to add a mux through third party packages
+You can go to GODoc and search for 3rd party packages. Todd went and searched for Juilet Schmidt 
