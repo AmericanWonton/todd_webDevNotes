@@ -16,3 +16,7 @@ Pass in the route and the function
 38. Third party serve-mux julien schmidt's router
 Now we are going to try to add a mux through third party packages
 You can go to GODoc and search for 3rd party packages. Todd went and searched for Juilet Schmidt 
+
+39. You can watch the video for hands on exercise, invluding parsing a file and passing data 
+into that parsed data upon a certain version of HadnleFunc with a certain URL 
+Gunna need to watch this again, (AND WORK ON A WINDOWS CUZ TELNET SUCKS ON A MAC)
