@@ -1,0 +1,13 @@
+42. Serving a file with io.Copy
+We can serve content and files, like a picture, and put it into a writer.
+The one that DOSEN'T  suck is http.FileServer
+The files that actually work are under 02_serving
+
+43. Serve file 
+Etag is a way cahce is handled, (it's introductory). We don't really use ServeContent 
+
+44. File FileServer
+So now we are going to handle entire file folders in our directory. 
+
+45. Serving a file with http.FileServer and & http.StripPrefix
+Now we will learn how to serve files down to a specific folder 
