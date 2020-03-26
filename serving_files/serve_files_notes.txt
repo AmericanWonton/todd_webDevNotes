@@ -11,3 +11,16 @@ So now we are going to handle entire file folders in our directory.
 
 45. Serving a file with http.FileServer and & http.StripPrefix
 Now we will learn how to serve files down to a specific folder 
+
+46. Static File Server 
+
+47. Log.Fatal and http.Error 
+http.Error takes a response writer, some string phrase and status code, like 404. Sometimes you'll see constants 
+used in place of 404. Example
+http.Error(w, "file not found", 404(http.RequestNotFound))
+Look at serve content in the 02_asset folder for an example. 
+
+We really should do a review of all this stuff...just build a parsed file with all of the stuff learned from this lesson. 
+
+
+50. The http.NotFoundHandler/ Favicon request. 
