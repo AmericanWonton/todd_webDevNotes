@@ -17,7 +17,7 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", foo)
-	http.Handle("/favicon.ico", http.NotFoundHandler())
+	http.Handle("/favicon.ico", http.NotFoundHandler()) //We have no favicon so we ignore this
 	http.ListenAndServe(":8080", nil)
 }
 
