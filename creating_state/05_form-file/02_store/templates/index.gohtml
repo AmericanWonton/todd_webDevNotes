@@ -7,7 +7,7 @@
     <input type="submit">
 </form>
 
-{{if .}}
+{{if .}} {{/* If there is data here, we can print the data */}}
 <h1>Here are the contents of the file:</h1>
 {{.}}
 {{end}}

@@ -3,3 +3,9 @@
 55. Passing values through a form
 
 56. UPloading a file, reading a file, creating file on server.
+Might want to do some examples on this...
+
+57. Enctype
+That's that enctype="multipart/form-data" nonsense. Encytype is the encoding type
+Anytime you create a form where a User can submit a form with a file, you need this.
+If you want to learn how to do this,  just look at his video again.
