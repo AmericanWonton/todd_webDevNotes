@@ -9,3 +9,22 @@ Might want to do some examples on this...
 That's that enctype="multipart/form-data" nonsense. Encytype is the encoding type
 Anytime you create a form where a User can submit a form with a file, you need this.
 If you want to learn how to do this,  just look at his video again.
+
+58. Redirects
+We can redirect a request from one place to another. The URL says give me the resource at THIS location.
+A serfer can be like, "Hey, this stuff moved, or we want you over here," then redirects you to a different succes
+page.
+There's some constants for  redirects,(and other success/fail codes).
+The redirects are in the 300 category.
+For instance, if you ask for '/dog' and the server gives a status code 301, moved permanantly, 
+the server responds saying, 'here, it's at /doggie now', and then the browser will go to /doggie from 
+now on.
+303 see other, moves the method to GET. 302 is still there,(for legacy applications).
+307 preserves the same METHOD. 
+
+59. Redirect Codes Diagrams
+rfc73421 definitive  status code for servers. Google it if you aren't sure. 
+Watch video for pretty pictures and explanations.
+If you have /doggie saved in your browser, your browser ignores /dog, unless you clear the browser. 
+418 adn 420 are gone. 
+
