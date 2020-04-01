@@ -1,0 +1,12 @@
+66. Sessions. We can give the User a cookie, which gives them a unique ID and we can KNOW who is communicating 
+with the server. 
+We can store the unique ID in the cookie OR in the URL, appended to the URL 
+If we are using https secure connection, then we can securely do that as well. 
+
+67. Universally Unique ID 
+There's some 3rd party packages you can use to generate these. 
+You can read about UUIDs on wikepedia to learn more. 
+
+68. Your First Session 
+Todd gave us a little diagram about sessions 
+Sessions come and go...User information is stored! 

@@ -28,3 +28,28 @@ Watch video for pretty pictures and explanations.
 If you have /doggie saved in your browser, your browser ignores /dog, unless you clear the browser. 
 418 adn 420 are gone. 
 
+60. Redirects in Pracice
+May need to watch this to get a full understanding
+Moved permannanlty stores in your browser to never go to that new location.
+
+61. Cookies Overview
+Cookie are a little file that holds info a server can write to a clients machine if the client allows it. We can 
+create STATE created if they don't want cookies. We can put a uniuqe ID into a cookie, assossiated to a User. 
+A domain can write a cookie, then the browser can look to see if it has a cookie...it's domain specific. Pepsi can't make 
+REQEST for Coke domain, for example. If they don't accept cookies, we can also make a unique URL with an identifier. It's encrypted and 
+decrypted between going from the client to the server. If someone snapped a pic of that URL, they could access that state. 
+
+62. Cookies writing and reading 
+Go to GoDoc for cookie information. There's a type Cookie. 
+
+63. Is pretty straight forward on how to write mulitple cookies. See 02_multiple to take a look. 
+
+64. Hands on Exercise...how to tell how many time a User has been to your domain?
+
+65. Deleting a Cookies
+This is in 05max age.
+You set the exact age, (in seconds) for the age of the cookie...then it gets deleted or lasts a certain period of time. 
+
+
+
+
