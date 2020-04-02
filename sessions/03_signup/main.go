@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 
 	uuid "github.com/satori/go.uuid"
@@ -45,11 +46,16 @@ func bar(w http.ResponseWriter, req *http.Request) {
 }
 
 func signup(w http.ResponseWriter, req *http.Request) {
+	/* If alreadyLoggedIn, (which examines our cookies to see if the User value is already in the cookies),
+	returns true, we redirect to the 'logged-in' page */
 	if alreadyLoggedIn(req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
+		/* After redirecting, we have to return out of this or we loop through the
+		below code! */
 	}
 
+	/* If you ain't logged in, we go through this... */
 	// process form submission
 	if req.Method == http.MethodPost {
 
@@ -62,6 +68,7 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		// username taken?
 		if _, ok := dbUsers[un]; ok {
 			http.Error(w, "Username already taken", http.StatusForbidden)
+			log.Printf("Username already taken!\n")
 			return
 		}
 
@@ -71,7 +78,7 @@ func signup(w http.ResponseWriter, req *http.Request) {
 			Name:  "session",
 			Value: sID.String(),
 		}
-		http.SetCookie(w, c)
+		http.SetCookie(w, c) //Set the new cookie with the http package, with the new session value string
 		dbSessions[c.Value] = un
 
 		// store user in dbUsers

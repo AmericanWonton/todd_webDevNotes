@@ -25,6 +25,7 @@ func alreadyLoggedIn(req *http.Request) bool {
 	if err != nil {
 		return false
 	}
+	/* This is going to return true or false...if the cookie.value HAS THE VALUE, then ok should be true and we return true from this */
 	un := dbSessions[c.Value]
 	_, ok := dbUsers[un]
 	return ok

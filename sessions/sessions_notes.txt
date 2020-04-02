@@ -10,3 +10,6 @@ You can read about UUIDs on wikepedia to learn more.
 68. Your First Session 
 Todd gave us a little diagram about sessions 
 Sessions come and go...User information is stored! 
+
+69. Signup
+If files are in the same folder, you can distrubute code across multiple files...something I had to learn on my own >:(
