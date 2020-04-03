@@ -19,7 +19,7 @@ type user struct {
 
 /* this has the username and the time of the last activity */
 type session struct {
-	un           string
+	Username     string
 	lastActivity time.Time
 }
 
@@ -28,7 +28,12 @@ var dbUsers = map[string]user{}       // user ID, user
 var dbSessions = map[string]session{} // session ID, session structs we now have
 var dbSessionsCleaned time.Time       //This keeps track of session times
 
-const sessionLength int = 30
+const sessionLength int = 20
+
+/* Role declaration */
+const theUser string = "USER"
+const theAdmin string = "ADMIN"
+const theEmployee string = "EMPLOYEE"
 
 func init() {
 	tpl = template.Must(template.ParseGlob("templates/*"))
@@ -37,7 +42,7 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", index)
-	http.HandleFunc("/bar", bar)
+	http.HandleFunc("/roleplay", bar)
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/logout", logout)
@@ -46,9 +51,9 @@ func main() {
 }
 
 func index(w http.ResponseWriter, req *http.Request) {
-	u := getUser(w, req)
+	theUser := getUser(w, req)
 	showSessions() // for demonstration purposes
-	tpl.ExecuteTemplate(w, "index.gohtml", u)
+	tpl.ExecuteTemplate(w, "index.gohtml", theUser)
 }
 
 func bar(w http.ResponseWriter, req *http.Request) {

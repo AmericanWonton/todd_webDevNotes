@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gulag</title>
+</head>
+<body>
+
+<h1>Welcome to the Gulag, commandante.</h1>
+{{/* If there's an appropriate user entry, then we show this stuff! */}}
+{{if .FirstName}}
+    Firstname:  {{.FirstName}}<br>
+    Lastname:  {{.Lastname}}<br>
+    Age:  {{.Age}}<br>
+    Password: {{.Password}}<br>
+{{else}}
+    <p>How the frick did you get in here with no credentials?</p>
+    {{/* Possible redirect call, if we can figure out how to do that... */}}
+{{end}}
+
+</body>
+</html>

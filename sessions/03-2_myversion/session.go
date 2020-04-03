@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 )
 
@@ -32,6 +33,8 @@ func getUser(req *http.Request) warCriminal {
 func alreadyLoggedIn(req *http.Request) bool {
 	cookie, err := req.Cookie("session")
 	if err != nil {
+		/* We found an error */
+		log.Printf("Oi, problem in alreadyLoggedIn, there's an error!\n")
 		return false
 	}
 	/* This is going to return true or false...if the cookie.value HAS THE VALUE, then ok should be true and we return true from this */
@@ -45,5 +48,6 @@ func alreadyLoggedIn(req *http.Request) bool {
 	if dbUsers[userName] == (warCriminal{}) {
 		foundUser = true
 	}
+	log.Printf("We're returning foundUser, which is currently: %v\n", foundUser)
 	return foundUser
 }

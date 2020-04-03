@@ -27,7 +27,7 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", index)
-	http.HandleFunc("/bar", bar)
+	http.HandleFunc("/gulag", gulag)
 	http.HandleFunc("/signup", signup)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.ListenAndServe(":8080", nil)
@@ -39,25 +39,29 @@ func index(w http.ResponseWriter, req *http.Request) {
 	uberTemplate.ExecuteTemplate(w, "index.gohtml", user)
 }
 
-func bar(w http.ResponseWriter, req *http.Request) {
-	u := getUser(req)
+func gulag(w http.ResponseWriter, req *http.Request) {
+	/* get the User */
+	newUser := getUser(req)
+	/* If the User isn't logged in, bring them to the main screen! */
 	if !alreadyLoggedIn(req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 	}
-	tpl.ExecuteTemplate(w, "bar.gohtml", u)
+	uberTemplate.ExecuteTemplate(w, "gulag.gohtml", newUser)
 }
 
 func signup(w http.ResponseWriter, req *http.Request) {
 	/* If alreadyLoggedIn, (which examines our cookies to see if the User value is already in the cookies),
 	returns true, we redirect to the 'logged-in' page */
 	if alreadyLoggedIn(req) {
+		log.Printf("Already logged in with user\n. Going to Log in screen.\n")
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 		/* After redirecting, we have to return out of this or we loop through the
 		below code! */
 	}
 
+	log.Printf("We aren't logged in, let's see what we can do...\n")
 	/* If you ain't logged in, we go through this... */
 	// process form submission
 	if req.Method == http.MethodPost {
@@ -105,5 +109,5 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	tpl.ExecuteTemplate(w, "signup.gohtml", nil)
+	uberTemplate.ExecuteTemplate(w, "signup.gothml", nil)
 }

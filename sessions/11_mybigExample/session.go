@@ -10,27 +10,28 @@ import (
 
 func getUser(w http.ResponseWriter, req *http.Request) user {
 	// get cookie
-	c, err := req.Cookie("session")
+	newCookie, err := req.Cookie("session")
 	if err != nil {
+		//Create cookie if error is returned and session cookie not found
 		sID, _ := uuid.NewV4()
-		c = &http.Cookie{
+		newCookie = &http.Cookie{
 			Name:  "session",
 			Value: sID.String(),
 		}
 
 	}
-	c.MaxAge = sessionLength
+	newCookie.MaxAge = sessionLength
 	/* For the above, the session gets reset for another 30 seconds, which is that constant in main.go */
-	http.SetCookie(w, c)
+	http.SetCookie(w, newCookie) //Set the new cookie created
 
 	// if the user exists already, get user
-	var u user
-	if s, ok := dbSessions[c.Value]; ok {
-		s.lastActivity = time.Now()
-		dbSessions[c.Value] = s
-		u = dbUsers[s.un]
+	var aUser user
+	if someone, ok := dbSessions[newCookie.Value]; ok {
+		someone.lastActivity = time.Now() //Set the last activity to now
+		dbSessions[newCookie.Value] = someone
+		aUser = dbUsers[someone.Username] //Find the username from sessions to search our User database for...if that person is returned, asigned it to this User
 	}
-	return u
+	return aUser
 }
 
 func alreadyLoggedIn(w http.ResponseWriter, req *http.Request) bool {
@@ -69,8 +70,8 @@ func cleanSessions() {
 // for demonstration purposes
 func showSessions() {
 	fmt.Println("********")
-	for k, v := range dbSessions {
-		fmt.Println(k, v.un) //This will print a User and the session
+	for k, aSession := range dbSessions {
+		fmt.Println(k, aSession.Username) //This will print a User and the session
 	}
 	fmt.Println("")
 }

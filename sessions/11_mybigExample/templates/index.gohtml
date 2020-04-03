@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<p>Welcome to Big Jim's Waterpark...</p>
+{{/* The data passed in contained a firstName, we're good to go */}}}
+{{if .First}}
+    <p>Here's our logged in User...go see what you can do in our Park!</p>
+    USER NAME {{.UserName}}<br>
+    PASSWORD {{.Password}}<br>
+    FIRST {{.First}}<br>
+    LAST {{.Last}}<br>
+    ROLE {{.Role}}<br>
+    <h2><a href="/logout">log out</a></h2>
+{{else}}
+    {{/* No data was passed in, the User isn't signed up/hasn't logged in! */}}
+    <h2><a href="/signup">sign up</a></h2>
+    <h2><a href="/login">log in</a></h2>
+{{end}}
+
+<br>
+<h2>Go to <a href="/bar">the bar</a></h2>
+
+</body>
+</html>

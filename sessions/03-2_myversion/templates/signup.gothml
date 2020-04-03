@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+{{/* If the User is already has a cookie and is signed in */}}
+<p>Hey, you're ugly</p>
+<br>
+<p> and a stupid face </p>
+
+<br><br>
+
+<form method="POST">
+    <input type="text" name="firstname" placeholder="firstname">
+    <input type="text" name="lastname" placeholder="lastname">
+    <input type="text" name="age" placeholder="age">
+    <input type="text" name="password" placeholder="password">
+    <input type="submit">
+</form>
+
+</body>
+</html>

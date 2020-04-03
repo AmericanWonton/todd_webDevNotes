@@ -1,0 +1,3 @@
+If User if logged in, the should be directed to their unique login page, based on their role
+3 Roles: Admin, Customer, Employee
+If there's over 20 seconds of inactivity, they get logged off. 

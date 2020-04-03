@@ -13,3 +13,21 @@ Sessions come and go...User information is stored!
 
 69. Signup
 If files are in the same folder, you can distrubute code across multiple files...something I had to learn on my own >:(
+
+70. Encrypt Password with bcrypt
+First, need to get bcrypt from github, (see example...also, this is golang experimental territory)
+'cost' in the brcypt function is the amount of complexity for the password. 
+
+71. Login
+Hash is just taking something big and making it small...and it should have the same results
+
+72.Logout
+Might need to create a big project to test this all....
+ANy max age for a cookie less than 0 means delete it now.
+
+73. Permissions
+Might need to add this to the the big project thingie at the end of this lesson
+
+74. Expire a session 
+To Expire a client: one way is setting the max age on the cookie. Either they do something in 600 seconds or they get logged off. 
+Or...on the server, we can keep time of the last activity of the User. Occassionally we can go through and log them off if they had no activity. 

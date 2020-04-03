@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+{{/* If the User is already has a cookie and is signed in */}}
+{{if .FirstName}}
+    First name:  {{.FirstName}}<br>
+    Last name:  {{.Lastname}}<br>
+    Age: {{.Age}}<br>
+    Password: {{.Password}}<br>
+{{else}}
+    {{/* The User had no cookie and is being redirected to sign in */}}
+    <h2><a href="/signup">sign up</a></h2>
+{{end}}
+
+<br>
+{{/* If you click on this with no cookies, you aint gunna get jack */}}
+<h2>Go to <a href="/gulag">the Gulag</a></h2>
+</body>
+</html>

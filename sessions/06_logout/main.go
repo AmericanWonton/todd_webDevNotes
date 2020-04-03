@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/satori/go.uuid"
-	"golang.org/x/crypto/bcrypt"
 	"html/template"
 	"net/http"
+
+	uuid "github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type user struct {
@@ -127,10 +128,12 @@ func login(w http.ResponseWriter, req *http.Request) {
 }
 
 func logout(w http.ResponseWriter, req *http.Request) {
+	/* If you are already logged in...*/
 	if !alreadyLoggedIn(req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
-		return
+		return //You're already logged out...get outta here!
 	}
+	/* Throwing the error away because we checked it above */
 	c, _ := req.Cookie("session")
 	// delete the session
 	delete(dbSessions, c.Value)
@@ -138,7 +141,7 @@ func logout(w http.ResponseWriter, req *http.Request) {
 	c = &http.Cookie{
 		Name:   "session",
 		Value:  "",
-		MaxAge: -1,
+		MaxAge: -1, //Max age less than 0 means delete the cookie now.
 	}
 	http.SetCookie(w, c)
 
