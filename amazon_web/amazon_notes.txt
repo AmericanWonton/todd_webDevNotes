@@ -17,6 +17,23 @@ scp -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/01_virtual
 
 78. Persisting an Application 
 We want our application to continue running! 
-Ther's a couple way to do it...we're gunna do Todd's way.
+There's a couple way to do it...we're gunna do Todd's way.
 I also deleted the big ubunto file because I couldn't git add it: 
 ubuntu@ec2-18-223-136-31.us-east-2.compute.amazonaws
+
+to ssh in to the new Amazon maachine: 
+ssh -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/01_virtualServer/01_hello/my_key_pair.pem ubuntu@ec2-18-223-136-31.us-east-2.compute.amazonaws.com
+my service file is called ourservice.service 
+
+79/80 Hands on Exercise 
+second key pair is in that folder 
+Important copy stuff for second server: 
+to SHH into the server:
+ssh -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/02_hands-on/02_solution/second-keypair.pem ubuntu@ec2-52-14-9-153.us-east-2.compute.amazonaws.com
+to Add template files: 
+scp -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/02_hands-on/02_solution/second-keypair.pem cowboyBuild ubuntu@ec2-52-14-9-153.us-east-2.compute.amazonaws.com:the_server_directory_example
+
+Where I put all this crap on the server: the_server_directory_example
+
+
+
