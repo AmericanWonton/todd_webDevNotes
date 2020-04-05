@@ -2,7 +2,9 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	uuid "github.com/satori/go.uuid"
@@ -23,26 +25,33 @@ type session struct {
 	lastActivity time.Time
 }
 
-var tpl *template.Template
+var theTemplate *template.Template
 var dbUsers = map[string]user{}       // user ID, user
 var dbSessions = map[string]session{} // session ID, session structs we now have
 var dbSessionsCleaned time.Time       //This keeps track of session times
 
-const sessionLength int = 20
+const sessionLength int = 10
 
 /* Role declaration */
 const theUser string = "USER"
 const theAdmin string = "ADMIN"
 const theEmployee string = "EMPLOYEE"
 
+/* Funciton parse declaration */
+var funcMap = template.FuncMap{
+	"upperCase": strings.ToUpper, //upperCase is a key we can call inside of the template html file
+	//"rolePlay":    roleplay,
+	"debug_print": debugPrint,
+}
+
 func init() {
-	tpl = template.Must(template.ParseGlob("templates/*"))
+	theTemplate = template.Must(template.New("").Funcs(funcMap).ParseGlob("templates/*"))
 	dbSessionsCleaned = time.Now() //This is when the program starts, to keep track of the session length
 }
 
 func main() {
 	http.HandleFunc("/", index)
-	http.HandleFunc("/roleplay", bar)
+	http.HandleFunc("/roleplay", roleplay)
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/logout", logout)
@@ -51,33 +60,59 @@ func main() {
 }
 
 func index(w http.ResponseWriter, req *http.Request) {
+	refreshSessions(w, req)
 	theUser := getUser(w, req)
 	showSessions() // for demonstration purposes
-	tpl.ExecuteTemplate(w, "index.gohtml", theUser)
+	theTemplate.ExecuteTemplate(w, "index.gohtml", theUser)
 }
 
-func bar(w http.ResponseWriter, req *http.Request) {
-	u := getUser(w, req)
+func roleplay(w http.ResponseWriter, req *http.Request) {
+	refreshSessions(w, req)
+	/* This is the data this should be passed into our parsed template */
+	type dataStruct struct {
+		AUser   user
+		Writer  http.ResponseWriter
+		Request *http.Request
+	}
+	newUser := getUser(w, req) //get User with role permissions
+	/* If they aren't already logged in, log out! */
 	if !alreadyLoggedIn(w, req) {
-		http.Redirect(w, req, "/", http.StatusSeeOther)
+		http.Redirect(w, req, "/", http.StatusSeeOther) //Go back to the main screen to log in!
+		log.Printf("This boy right here ain't logged in!\n")
 		return
 	}
-	if u.Role != "007" {
+	/* If the wrong access was here, we could use this...but we allow everyone on the roleplay page..
+	for now.
+	if newUser.Role != theAdmin {
 		http.Error(w, "You must be 007 to enter the bar", http.StatusForbidden)
 		return
 	}
+	*/
+	/* Below is just some debug stuff */
+	if newUser.Role != theAdmin {
+		log.Printf("We have some peasants in here...\n")
+	}
 	showSessions() // for demonstration purposes
-	tpl.ExecuteTemplate(w, "bar.gohtml", u)
+	/* Create data to parse into file */
+	passedData := dataStruct{
+		AUser:   newUser,
+		Writer:  w,
+		Request: req,
+	}
+	theTemplate.ExecuteTemplate(w, "roleplay.gohtml", passedData)
 }
 
 func signup(w http.ResponseWriter, req *http.Request) {
+	refreshSessions(w, req)
 	if alreadyLoggedIn(w, req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
+		log.Printf("Bro, you're already logged in! Why you signing up?\n")
 		return
 	}
 	var u user
 	// process form submission
 	if req.Method == http.MethodPost {
+		log.Printf("Form posted, getting form values!")
 		// get form values
 		un := req.FormValue("username")
 		p := req.FormValue("password")
@@ -86,6 +121,7 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		r := req.FormValue("role")
 		// username taken?
 		if _, ok := dbUsers[un]; ok {
+			log.Printf("Oh no, this Username is already taken! %v\n", un)
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
 		}
@@ -103,20 +139,24 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		// store user in dbUsers
 		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.MinCost)
 		if err != nil {
+			log.Printf("Uh oh, we had a problem using bit crypt with our password...\n")
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
 		u = user{un, bs, f, l, r}
 		dbUsers[un] = u
 		// redirect
+		log.Printf("Okay, we've made our User, back to the main menu!\n")
+		log.Printf("Here is our cookie session name: %v\n", c.Name)
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 	}
 	showSessions() // for demonstration purposes
-	tpl.ExecuteTemplate(w, "signup.gohtml", u)
+	theTemplate.ExecuteTemplate(w, "signup.gohtml", u)
 }
 
 func login(w http.ResponseWriter, req *http.Request) {
+	refreshSessions(w, req)
 	if alreadyLoggedIn(w, req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
@@ -152,7 +192,7 @@ func login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	showSessions() // for demonstration purposes
-	tpl.ExecuteTemplate(w, "login.gohtml", u)
+	theTemplate.ExecuteTemplate(w, "login.gohtml", u)
 }
 
 func logout(w http.ResponseWriter, req *http.Request) {
@@ -181,3 +221,8 @@ func logout(w http.ResponseWriter, req *http.Request) {
 }
 
 /* You might not use this session cleaner in production */
+/* debug zone */
+func debugPrint() bool {
+	log.Printf("Hey, you made it here\n")
+	return false
+}

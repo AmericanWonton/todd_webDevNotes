@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -18,7 +19,7 @@ func getUser(w http.ResponseWriter, req *http.Request) user {
 			Name:  "session",
 			Value: sID.String(),
 		}
-
+		log.Printf("New cookie created named %v with value of %v\n", newCookie.Name, newCookie.Value)
 	}
 	newCookie.MaxAge = sessionLength
 	/* For the above, the session gets reset for another 30 seconds, which is that constant in main.go */
@@ -37,6 +38,8 @@ func getUser(w http.ResponseWriter, req *http.Request) user {
 func alreadyLoggedIn(w http.ResponseWriter, req *http.Request) bool {
 	c, err := req.Cookie("session")
 	if err != nil {
+		log.Printf("Yo, there was an error logging in: %v\n", err)
+		log.Printf("Our cookie's name is: %v\n", c.Name)
 		return false
 	}
 	s, ok := dbSessions[c.Value]
@@ -44,10 +47,10 @@ func alreadyLoggedIn(w http.ResponseWriter, req *http.Request) bool {
 		s.lastActivity = time.Now()
 		dbSessions[c.Value] = s
 	}
-	_, ok = dbUsers[s.un]
+	_, ok = dbUsers[s.Username]
 	// refresh session
 	c.MaxAge = sessionLength
-	/* For the above, the session gets reset for another 30 seconds, which is that constant in main.go */
+	/* For the above, the session gets reset for another 10 seconds, which is that constant in main.go */
 	http.SetCookie(w, c)
 	return ok
 }
@@ -74,4 +77,29 @@ func showSessions() {
 		fmt.Println(k, aSession.Username) //This will print a User and the session
 	}
 	fmt.Println("")
+}
+
+//for debug purposes
+func refreshSessions(w http.ResponseWriter, req *http.Request) {
+	//Get Cookie
+	newCookie, err := req.Cookie("session")
+	if err != nil {
+		log.Printf("Yo, there was an error logging in: %v\n", err)
+		//Create cookie if error is returned and session cookie not found
+		sID, _ := uuid.NewV4()
+		newCookie = &http.Cookie{
+			Name:  "session",
+			Value: sID.String(),
+		}
+		newCookie.MaxAge = sessionLength
+		/* For the above, the session gets reset for another 30 seconds, which is that constant in main.go */
+		http.SetCookie(w, newCookie) //Set the new cookie created
+		log.Printf("New cookie created named %v with value of %v\n", newCookie.Name, newCookie.Value)
+		return
+	}
+	// refresh session
+	newCookie.MaxAge = sessionLength
+	/* For the above, the session gets reset for another 10 seconds, which is that constant in main.go */
+	http.SetCookie(w, newCookie)
+	log.Printf("Session refreshed!\n")
 }

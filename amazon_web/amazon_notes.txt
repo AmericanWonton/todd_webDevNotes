@@ -1,0 +1,22 @@
+75. Overview
+We are in cloud computing...so we hire someone else to run our servers. 
+EC2 Elastic cloud compute. It means 'elastic'. As traffic increase, you can scale up, or vice versa.
+You can scan horizontally,(more machines) or vertically (more powerful machines).
+We can create an Amazon Machine Image,(AMI) that is a program that runs on it's own and can be scaled.
+You can have a load balancer which balances traffic to specific servers 
+S3 storage,(where you store non-code important stuff like vids and pics)
+
+76. Create a virtual server instance on AWS EC2 
+There's instructions on how to do this in the README of 01_hello...lets see if they need updating... 
+How do we keep a shell window open? (Using a damon script or whatever in 'User data' section of server)
+We added HTTP under Security so anyone on the web can see it.
+a PEM key is for security...you can see it in 01_hello...DON'T LOSE IT! It's asymetric encryption
+
+77.On one of those steps, I had to change it to this:
+scp -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/01_virtualServer/01_hello/my_key_pair.pem mybinary ubuntu@ec2-18-223-136-31.us-east-2.compute.amazonaws.com:
+
+78. Persisting an Application 
+We want our application to continue running! 
+Ther's a couple way to do it...we're gunna do Todd's way.
+I also deleted the big ubunto file because I couldn't git add it: 
+ubuntu@ec2-18-223-136-31.us-east-2.compute.amazonaws

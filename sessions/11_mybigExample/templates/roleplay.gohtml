@@ -8,38 +8,11 @@
 
 <h1>Welcome to the bar. What can I get you to drink?</h1>
 {{/* If there's data passed in, we go see what role you are... */}}
-{{if .Role}}
-    {{if eq .Role "USER"}}
-        {{/* Maybe go to customer page and display this? */}}
-        Welcome valued customer! Here's your information!<br>
-        USER NAME {{.UserName}}<br>
-        PASSWORD {{.Password}}<br>
-        FIRST {{.First}}<br>
-        LAST {{.Last}}<br>
-        ROLE {{.Role}}<br>
-    {{else if eq .Role "ADMIN"}}
-        {{/* Maybe go to Admin page and display this? */}}
-        Welcome all powerful Admin...what do you desire?<br>
-        USER NAME {{.UserName}}<br>
-        PASSWORD {{.Password}}<br>
-        FIRST {{.First}}<br>
-        LAST {{.Last}}<br>
-        ROLE {{.Role}}<br>
-    {{else if eq .Role "EMPLOYEE"}}
-        {{/* Maybe go to Employee page and display this? */}}
-        Here's your info...BACK TO WORK, SLAVE<br>
-        USER NAME {{.UserName}}<br>
-        PASSWORD {{.Password}}<br>
-        FIRST {{.First}}<br>
-        LAST {{.Last}}<br>
-        ROLE {{.Role}}<br>
-    {{else}}
-    {{/* If no data is passed in, we bring you to the log out screen */}}}
-    <h2><a href="/logout">log out</a></h2>
+{{if .AUser}}
+    {{if eq .AUser.Role "ADMIN"}}
+        <p> You made it Admin! </p>
+        {{debug_print | }}
     {{end}}
-{{else}}
-    {{/* If no data is passed in, we bring you to the log out screen */}}}
-    <h2><a href="/logout">log out</a></h2>
 {{end}}
 
 </body>

@@ -1,3 +1,12 @@
 If User if logged in, the should be directed to their unique login page, based on their role
 3 Roles: Admin, Customer, Employee
 If there's over 20 seconds of inactivity, they get logged off. 
+
+
+Notes:
+The sessions delete on their own! You need to refresh the session if you have a User logged in and they're 
+clicking on stuff!
+
+CNTRL + K + 0 = close all methods
+
+note, temporarily abandoned
