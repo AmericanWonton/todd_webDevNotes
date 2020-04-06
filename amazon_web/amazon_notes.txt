@@ -35,5 +35,6 @@ scp -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/02_hands-o
 
 Where I put all this crap on the server: the_server_directory_example
 
-
+81. Go to billing dashboard our watch the video to learn how to turn off those servers! You created a reminder too! 
+ 
 

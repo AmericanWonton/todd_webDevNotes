@@ -1,0 +1,16 @@
+82. Overview 
+RDBMS Relational Database Software Management 
+Relational databases can scale vertically okay, but not so much horizontally 
+
+83. Installing MySQl - Locally 
+This was kind of funky...might need to unistall this again: https://www.got-it.ai/solutions/sqlquerychat/sql-help/general-sql/uninstall-mysql-windows-10/
+
+84. Installing MySQL - AWS 
+
+85. Connect WorkBench to MySQL on AWS 
+Endpoint: testdb1.cd8ujtto1hfj.us-east-2.rds.amazonaws.com 
+user: admin
+password: bigPWord117
+
+86. Go and SQL Setup 
+You need a driver from github to run go mySQL: go get github.com/go-sql-driver/mysql 
