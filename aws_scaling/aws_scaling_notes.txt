@@ -1,0 +1,28 @@
+88. Overview of Load Balancers
+Load Balancers just round robins the request to servers, based on availability
+
+89. Create EC2 Security Groups
+So we can create a security group for web access, (port 80)
+And one accessed by our PEM
+We will also allow communication between machines with similar security rules
+My Load Balancer ID: sg-0c48cbf09ab575833
+
+90. Create an ELB Load Balancer 
+Click on EC2 and Load Balancer 
+Make sure you put the pem key in the 02 load balancer folder
+myLBKey = mylbkeyvalue
+build the code in 02_loadbalancer with the following: 
+GOOS=linux GOARCH=amd64 go build -o cowboy
+
+secure copy that to here:
+scp -i  D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/aws_scaling/02_load-balancer/second-keypair.pem cowboy ubuntu@ec2-52-14-9-153.us-east-2.compute.amazonaws.com:
+
+Then log into the web instance: 
+ssh -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/aws_scaling/02_load-balancer/second-keypair.pem ubuntu@ec2-52-14-9-153.us-east-2.compute.amazonaws.com
+
+See cowboy binary file with this: 
+ls -la 
+It needs it's permissions changed: sudo chmod 777 cowboy
+
+Pretty sure this is fucking up because we built the project at the root AND persisted it on this machine under the-example_directory
+Might need to create a new instance to test this... 
