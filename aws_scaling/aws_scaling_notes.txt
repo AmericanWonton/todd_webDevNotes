@@ -24,5 +24,55 @@ See cowboy binary file with this:
 ls -la 
 It needs it's permissions changed: sudo chmod 777 cowboy
 
+91. Implementing the Load Balancer 
+
 Pretty sure this is fucking up because we built the project at the root AND persisted it on this machine under the-example_directory
 Might need to create a new instance to test this... 
+For this example, I am going to remove the myservicefile.service, to see if we can just follow this example and 
+stop running the persisting application: 
+sudo systemctl stop myservicefile.service
+sudo systemctl disable myservicefile.service
+sudo systemctl status myservicefile.service 
+
+We need to remove the built cowboy file if it's still there...
+we need to rebuilt and copy the build file up: 
+GOOS=linux GOARCH=amd64 go build -o cowboy2
+then : 
+scp -i  D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/aws_scaling/03_ami/second-keypair.pem cowboy2 ubuntu@ec2-52-14-9-153.us-east-2.compute.amazonaws.com:
+then log back in and chmod: 
+sudo chmod 777 cowboy2 
+then: 
+go back into here: 
+sudo nano /etc/systemd/system/another.service 
+Paste in the following: 
+[Unit]
+Description=Go Server 
+
+[Service]
+ExecStart=/home/ubuntu/cowboy2
+WorkingDirectory=/home/ubuntu/
+User=root
+Group=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+CTRL + O to save in nano
+CTRL + x to exit
+
+then, enable this service: 
+sudo systemctl enable another.service
+then: sudo systemctl start another.service
+then: sudo systemctl status another.service
+
+You can check the load balancer DNS to see if it's running okay...make sure to exit out of the web server first!
+AMIS = Amazon Machine Image
+Image Name: webserverImage
+
+92. Connecting to MySQL Server using mySQLWorkbench 
+We are making database NOT publicly accessable now... 
+Having some troubles with this one...
+
+I'm skipping the hands on and autoscaling at 95.
+
