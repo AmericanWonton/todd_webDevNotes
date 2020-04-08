@@ -1,0 +1,15 @@
+96. Starting Files 
+It's a photo blog 
+
+97. User Data 
+Next we're going to get a basic cookie going...
+
+98. Storing Mulitple Values
+next we are storing multiple values 
+You really don't want to do this in a production setting
+
+99. Uplodaing Pictures
+The picture is stored as a 'SHA' hash, on our server. If anyone needed to see it, we can just store it on a server with the SHA, then look it up 
+in a database if it is ever needed. 
+
+100. Displaying Pictures

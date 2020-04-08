@@ -1,0 +1,26 @@
+101. Keyed-Hash Message Authentication Code (HMAC) 
+Given the same input, the hash produces the same output 
+We should be storing the same hash value that our User has on their machine, if they enter the same key for it. 
+Might need to do these examples again... 
+
+102.Base64 Encoding
+This is good if you want to make things MORE difficult...you can't store everything in a cookie
+For instance, you cookie dosne't like quotes, like for JSON...so you can use Base64 instead 
+02/01 are the same, Todd just gave the first one a standard for encoding. You don't need it. 
+To see it in action go to 03 
+
+103. Web Storage 
+There's pluses and minuses of Web Storage. 
+If you know how to do cookies...it's fine. Cookies sometimes NEED notifications in the EU...so eh...
+Dunno if you need to do the same with Web Storage. You access web storage with Javascript 
+Otherwise you have to use EVERYTHING in the URL 
+Session storage keeps going on until Browser is closed 
+Local Storage keeps going until deleted 
+Look at this stuff in the developer console under local and session storage 
+
+104. Context 
+This is a relatively new package in go 
+You can set parameters and limits of the 'context' of a request 
+For instance, YOU GOT 5 SECONDS TO GET THIS DATA OR WE'RE DONE. Or if we cancled a process or whatever, 
+we can shut everything down 
+Context really isn't meant for stuffing a bunch of data inside, (maybe just your session ID)
