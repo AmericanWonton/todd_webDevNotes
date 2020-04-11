@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 5vw;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Make a request</h1>
+
+<script>
+    //When h1 is clicked, the query selctor called makeRequest
+    document.querySelector('h1').onclick = makeRequest;
+
+
+    function makeRequest() {
+
+        // create a  XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        // open the request
+        xhr.open('GET', 'test.html'); //Pass in the method and what yo uwant to open, then true when you want it asychronous...so maybe do that!
+
+        // handles the response
+        /* If you look at the doucmentation for AJAX, there's a bunch of 'readyStates'. This handles a change of any of them and displays them if it's 200 */
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+                alert(xhr.responseText);
+            }
+        };
+
+        // send the request
+        xhr.send();
+    }
+
+
+</script>
+</body>
+</html>

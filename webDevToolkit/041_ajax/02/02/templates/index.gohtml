@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 5vw;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+<h1>Make Something Happen</h1>
+
+<script>
+    document.querySelector('h1').onclick = makeRequest;
+
+    function makeRequest() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/foo', true);
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+                /* Once we click h1, we create a request that builds a body portion of our document,
+                with some text that we then add once we recieve a good response back! */
+                var b = document.querySelector('body');
+                var myHeadingOne = document.createElement('h1');
+                var myHeadingOneText = document.createTextNode(xhr.responseText);
+                myHeadingOne.appendChild(myHeadingOneText);
+                b.appendChild(myHeadingOne);
+            }
+        };
+
+        xhr.send();
+    }
+
+</script>
+</body>
+</html>

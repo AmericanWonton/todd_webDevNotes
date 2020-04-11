@@ -24,3 +24,53 @@ You can set parameters and limits of the 'context' of a request
 For instance, YOU GOT 5 SECONDS TO GET THIS DATA OR WE'RE DONE. Or if we cancled a process or whatever, 
 we can shut everything down 
 Context really isn't meant for stuffing a bunch of data inside, (maybe just your session ID)
+
+105. TLS & HTTPS
+We're going to go through encrypting 
+Look up 'SSL TLS HTTPS process explained in 7 minutes' on Youtube
+Client gets a public key that is encrypted. The server sees the encrypted message and decrypts it with a certain key 
+Let's Encrypt can give you certificates...if you can jump through their hurdles 
+we are now going to use 'ListenAndServeTLS' 
+It is also now on port 10443 for development 
+TLS is the new SSL! 
+warning, that letsencrypt package is dead! We using this now: golang.org/x/crypto/acme/autocert
+Make sure you ignore all .pem files in your git folder in git.ignore 
+Having difficulty doing this one....
+
+106. JSON- JavaScript Object Notation 
+Javascript Object Notation 
+Used in every programming language. Used for sending data back and forth between machines 
+It serialized information into 1s and 0s. 
+Before JSON was XML! 
+There's Names, (what the variable is called) and Values, (strings, boolean, more objects, etc.)
+
+There's also JSON Arrays, which have big brackets around them. They contain elements, (JSON Objects).
+They are seperated by commas
+You can go to JSON.org to take a look at the formatting 
+
+107. Go & JSON - Marshal and Encode
+You can use either Marshal and UnMarshal or Encode and Decode
+Marshal is good if you want to use it into a variable.
+Encode just turns go code into JSON and 'sends it over the wire'
+
+108. Unmarshal JSON with GO 
+JSON to Go.com is a very handy website 
+
+109. Unmarshal JSON with Go using Tags
+I'm gunna skip this and maybe come back if I need it...
+
+110. Skipping Hands on... 
+
+111. Ajax Introduction
+Asynchronous Javascript and XML,(now JSON). It allows the browser communicate with the server wihtout having to reload a page. 
+For example, look at the google search bar...it gets sent to google and automatically responds with drop down options! 
+MDN Documentation: https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX
+XML HTTP Request is the most important one
+DOM = Document Object Model...that includes body, html...AND JAVASCRIPT 
+The first examples may not work cuz according to this, I can't do localhost:
+https://stackoverflow.com/questions/41965066/access-to-image-from-origin-null-has-been-blocked-by-cors-policy
+
+112. Ajax Server Side
+We're going to program a server to handle an Ajax Request 
+Ajax requests have methods and some methods. 
+On the server, wer create something to handle that request. 

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 5vw;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+<h1>Make Something Happen</h1>
+
+<script>
+    document.querySelector('h1').onclick = makeRequest;
+
+    function makeRequest() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/foo', true); //We need to write some code on the server to handle this GET request on foo
+        //Use this to handle a successful response back
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+                alert(xhr.responseText);
+            }
+        };
+        xhr.send(); //Send the Request afterward
+    }
+
+
+
+</script>
+</body>
+</html>
