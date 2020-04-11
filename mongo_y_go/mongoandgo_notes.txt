@@ -1,0 +1,16 @@
+113. Organizing Code Into Packages
+We have a 'models' folder for modeling stuff into the database
+on user.go User needs to be capitalized to be exported! 
+
+114. Create and Delete a User 
+We can post User data with curl...kinda like Postman
+
+115. MVC Design Pattern- Model View Controller
+model = data 
+controller = connects the view with the data 
+So basically he moved all the functions from the main.go file to the controllers file  
+Not gunna lie, I may just start on the Docker session and go look back at an older 
+go project to do mongo.... 
+
+116 -121
+I think I might come back to this later 
