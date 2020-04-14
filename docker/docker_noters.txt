@@ -66,3 +66,13 @@ docker --help or docker command --help is handy
 Search for your repository here: 
 docker search americanwonton
 docker run -d -p 80:80 americanwonton/golang-docker
+
+130. Go, Docker and Amazon Web Services
+ssh -i D:/Go_Workspace/src/golang_webdev_tutorial/my_stuff/amazon_web/02_hands-on/02_solution/second-keypair.pem ec2-user@ec2-3-21-233-195.us-east-2.compute.amazonaws.com
+sudo yum update  -y
+sudo yum install -y docker (the y is just ansewering yes to anything) 
+sudo service docker start 
+sudo usermod -a -G docker ec2-user (You can execute docker commands without using sudo with this)
+Log out then back in to get new permissions 
+docker info to check 
+Run this nonsense: docker run -d -p 80:80 toddmcleod/golang-hello-world
