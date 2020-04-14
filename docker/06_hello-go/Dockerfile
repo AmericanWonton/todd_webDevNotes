@@ -1,4 +1,5 @@
 # A hello world example with Go
 FROM golang:1.8-onbuild
-MAINTAINER tuddleymc@gmail.com
+LABEL maintainer="jbkeller0303@gmail.com"
 
+LABEL build_date="2020-13-04"

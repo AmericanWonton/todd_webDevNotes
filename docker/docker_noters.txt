@@ -1,3 +1,68 @@
 122. Introduction to Docker
 
 123. Virtual Machines & Containers 
+This is good for installing Docker! https://www.sitepoint.com/docker-windows-10-home/
+https://medium.com/@mbyfieldcameron/docker-on-windows-10-home-edition-c186c538dff3
+Also try docker ps -a to see how many processes you have 
+Also try docker ps to see what processes are currently running 
+
+124. Installing Docker 
+Dang, I bought Windows 10 pro :(
+
+125. Docker Whalesay Example 
+Docker commands are important to look at  
+You can search for containers in the command line: Example: 
+docker search docker/whalesay 
+
+126. Using Dockerfile to Build An Image
+docker github are called repositories 
+You can call that folder ANYTHING 
+There's commands in that docker file that create a new docker image
+Whereever that dockerfile sits, ALL the files in that root directory are included in the image!
+Docker file always starts with a comment, or FROM
+Docker file commands are under documentation, in the DockerFile Refference 
+Here's what's in the docker file: 
+1# Changes whalesay to speak a fortune
+2FROM docker/whalesay:latest
+3RUN apt-get -y update && apt-get install -y fortunes
+4CMD /usr/games/fortune -a | cowsay
+
+Line 1 is just a comment 
+Line 2 has the project we are pulling from 
+Line 3 Creates a statement that runs on the CMD line 
+Line 4 Runs the command from line 3 onto this docker image 
+
+Here's a good article to explain the difference between run, cmd, and entrypoint: http://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/
+
+now we gotta build this dockerfile into a directory 
+
+127. Launching a Container Running Curl 
+Remeber, that folder can be named anything...  
+docker run -it (it is interactive terminal) ranchhand
+Because this is on windows, he had to prefix it when trying to run: 
+winpty docker run -it ranchhand bash
+All this application does is ask you to curl 
+Type exit to exit 
+
+128. Running a Go Web App In a Docker Container 
+you can go on Docker Hub and search Goland to learn how to do golang build 
+You'd just need a dockerfile and a dockerignore file in the root directory 
+apparently MAINTANER got replaced with LABEL : https://medium.com/@chamilad/lets-make-your-docker-image-better-than-90-of-existing-ones-8b1e5de950d
+To run this docker build as it's own process, (and also map a port to it) we do the following: 
+docker run -d -p 80:80 golang-docker
+docker ps to see the process running 
+To stop the docker container: https://coderwall.com/p/ewk0mq/stop-remove-all-docker-containers
+
+129. Pushing and Pulling to docker hub 
+To remove images: 
+docker rmi -f (image ID or name)  (This is 'remove image' with 'force')
+docker 'tag' is the latest version , then add your docker hub username, then the project name again, then add :latest,(another tag)
+docker tag golang-docker americanwonton/golang-docker:latest
+Next, you need to log into docker: docker login 
+Apparently Todd needed to install bash for some reason...
+Okay, now we need to push this container/image 
+docker push americanwonton/golang-docker
+docker --help or docker command --help is handy 
+Search for your repository here: 
+docker search americanwonton
+docker run -d -p 80:80 americanwonton/golang-docker
